@@ -12,14 +12,14 @@ Create a Temperature Conversion program.
  4. The program will loop until the user presses Q, allowing them to pick a new conversion.
 
 Create the following functions.  
- 1. celsius_to_farenheit
- 2. farenheit_to_celsius
+ 1. celsius_to_fahrenheit
+ 2. fahrenheit_to_celsius
  3. celsius_to_kelvin
  4. kelvin_to_celsius
- 5. farenheit_to_kelvin
- 6. kelvin_to_farenheit
+ 5. fahrenheit_to_kelvin
+ 6. kelvin_to_fahrenheit
 
-Each function should take in the first value, and return the second value.  For instance, celsius_to_farenheit should take in the C value, and return the F value
+Each function should take in the first value, and return the second value.  For instance, celsius_to_fahrenheit should take in the C value, and return the F value
 
 Equations:
  1. C to F: Divide by 5, then multiply by 9, then add 32
