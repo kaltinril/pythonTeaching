@@ -1,0 +1,16 @@
+How to open Python:
+1. Go to the Start / Windows button in the bottom left of the screen.
+2. Click it
+3. Type "Python IDLE"
+4. Look for Python IDLE 3.6 or 3.7
+5. Click on it to open it
+
+How to create a file:
+1. File > New File
+
+How to Save a file:
+1. File > Save as...
+
+How to run a file/program:
+1. Open the file (if it's not already open)
+2. Press F5 (Click yes to saving)

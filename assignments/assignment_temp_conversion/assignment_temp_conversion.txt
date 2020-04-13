@@ -1,0 +1,36 @@
+Temperature Conversion
+
+Items learned:
+ 1. Function creation
+ 2. Function arguments
+ 3. Function return values
+
+Create a Temperature Conversion program.  
+ 1. This program will ask the user for what they want to convert from and to.  
+ 2. It will then call the appropriate function
+ 3. It will print out the results for the user to see.
+ 4. The program will loop until the user presses Q, allowing them to pick a new conversion.
+
+Create the following functions.  
+ 1. celsius_to_farenheit
+ 2. farenheit_to_celsius
+ 3. celsius_to_kelvin
+ 4. kelvin_to_celsius
+ 5. farenheit_to_kelvin
+ 6. kelvin_to_farenheit
+
+Each function should take in the first value, and return the second value.  For instance, celsius_to_farenheit should take in the C value, and return the F value
+
+Equations:
+ 1. C to F: Divide by 5, then multiply by 9, then add 32
+ 2. F to C: Deduct 32, then multiply by 5, then divide by 9
+ 3. C to K: add 273.15
+ 4. K to C: subtract 273.15
+ 5. F to K: Deduct 32, then multiply by 5, then divide by 9, add 273.15
+ 6. K to F: Deduct 273.15, Divide by 5, then multiply by 9, then add 32
+
+TIPS:
+For F->K:
+ - simply call your F->C, and send that answer to C->K
+For K->F:
+ - simply call your K->C, and send that answer to C->F

@@ -1,0 +1,46 @@
+Rock Paper Scissors
+
+This will be a player vs computer game
+
+Rules of the game:
+ 1. Each player picks rock, paper, or scissors at the same time (Without knowing the other persons answer)
+ 2. Rock beats Scissors (Smashes)
+ 3. Scissors beats Paper (Cuts)
+ 4. Paper beats Rock (Covers)
+ 5. Go for the best of 2 out of 3 games.  (Meaning, if you get a tie, the third game winner is the tie breaker)
+
+Details and explanation on steps:
+ 1. Create a variable called turns_left, set the value to 3
+ 2. Create a loop, that exits if turns_left is 0
+ 3. Ask the player for their answer
+    Suggest using R for Rock, P for Paper, and S for scissors.
+        "Pick [R]ock, [P]aper, or [S]cissors: "
+ 4. Computer player: Get a random number between 1 and 3
+    Suggest using 1 for Rock, 2 for Paper, and 3 for scissors
+ 5. Check the situations/Rules and print if the computer won, or the player won.
+
+
+Recall the following python language information:
+
+### To create a random number, you must import the library called random at the top of your file like this:
+import random 
+
+### To get a random number, you use the following line which in this example, gets a number between 1 and 100
+result = random.randint(1, 100)
+
+### To get input from the user, use the input command to print a message and get input at the same time
+answer = input("My fancy message: ")
+
+### To Create a loop, use the while loop
+while my_variable > 0:
+    # my code goes here, indented
+
+### To compare two values, and do something based on the result, use an IF statement
+if var_one > 5:
+    print("My message!")
+
+if var_one = 0:
+    print("My Message!!")
+
+if var_one > var_two:
+    print("My Message!")

@@ -1,0 +1,43 @@
+Wack-a-mole
+
+Game Board:
+ 1. a 3x3 grid (9 total places)
+ 2. A "mole" will randomly appear in one of the 9 places
+ 3. The mole will stay on the screen for a short random time
+
+Rules:
+ 1. The player must press the number keys (1-9) preferably on the number pad to "wack" the mole.
+ 2. Give the player 30 seconds to wack as many moles as they can.  Ensure that only 30 moles total spawn so as to be a fair chance for total
+ 3. If the player wacks a mole, give them 10 points
+ 4. If the player wacks an empty hole, subtract 5 points
+
+Information:
+ * Players can take turns seeing who can get the most points
+
+New Python Features:
+
+    ## How to measure how long it has been
+    # Import the time library
+    import time
+
+    # Store the time you create or "spawn" the mole
+    spawn_time = time.time()
+
+    # Check if it's been so many seconds or fractions of a second since then
+    if (time.time() - spawn_time) > 0.5: # half a second
+        do_something_here()
+
+Help on how to do this:
+
+If you need help, read below
+
+1. Create a new file, safe it as wackamole.py
+2. Import the time library at the top
+3. Create variables to store the points
+4. Create variables to store how many moles have appeared
+5. Create variable to store the start time of the game, so you can count down to 30
+6. Create a variable called is_running and set it to true
+7. Create a while loop, using the is_running variable to keep the loop going
+8. Check to see if you should spawn a mole. (has it passed 1 second since you last spawned one? if so, spawn a new one for a random time)
+9. Check if the player pressed anything, if they hit the mole, give them 10 points, if they didn't, subtract 5
+10. If 30 seconds are up, or if the person hit all 30 moles, game over!

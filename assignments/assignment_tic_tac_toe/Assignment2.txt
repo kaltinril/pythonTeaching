@@ -1,0 +1,33 @@
+Tic Tac Toe
+
+Make Tic Tac Toe.
+
+Rules:
+ 1. Board is a 3x3 grid
+	[ ][ ][ ]
+	[ ][ ][ ]
+	[ ][ ][ ]
+ 2. Two players, each get a unique symbol (X or O)
+ 3. Each player takes turns placing their one of their symbol on the board
+	(Suggest using number key for 3x3 grid)
+ 4. Pick a player to go first 
+ 5. To win:
+	Get 3 in a row, 3 in a column, or 3 in a diagonal
+ 6. Tie:
+	if all squares are filled, and no one has won
+
+
+Optional additions:
+ 7. Let players chose how many games to play before they start (3 games, 10 games, etc)
+ 8. Keep track of how many wins for each player
+ 9. Use Arrays to store the placement of the X and O
+ 10. Make the grid arbitrary NxN, where the win condition still requires N in a row
+	i.e. 4x4, where you have to get 4 in a row
+	Good luck figuring out a mechanism for user input to decide which square to place it in :p
+ 11. Allow user to pick they're symbol
+ 12. Allow more than 2 players in boards larger than 4x4.
+
+Extra Optional features:
+ 13. Use Pygame library and draw the board instead of using text
+ 14. Use pygame library to use mouse click instead of keyboard input
+ 15. Add in a time counter that gives points for the lowest time, change a WIN to a # of points.
