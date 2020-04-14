@@ -1,7 +1,9 @@
 # Get user input, and store in variable called "Message"
-message = input("What is your message?")
+message = input("What is your message? ")
 secret = ""
 
+# Loop over each letter in the message, converting it to it's partner character
+# Each partner character is hard coded for this simple example
 for letter in message:
     if letter == "a":
         letter = "4"
@@ -31,5 +33,8 @@ for letter in message:
         letter = letter
 
     secret = letter + secret
+
+# Reverse the message
+for letter in message:
 
 print(secret)
