@@ -1,48 +1,48 @@
 Hidden Message Part 1
 
-In this assignment you will alter part2 to create your own mapping code.
+In this assignment you will alter part1 to create your own mapping/translation functions and learn about dictionaries.
+
+A dictionary is essentially just a key:value pair list, similar to JSON.
 
 
 Items Learned:
- 1. String breakdown into individual characters
+ 1. Functions (creating, arguments, return values))
 
- 2. For each loops
-
- 3. Weak Encryption (obfuscation) ideas
+ 2. Dictionaries
 
 
 Assignment:
- 1. Ask the user for a message to encrypt or decrypt.
-
- 2. Pick at least 12 pairs of ASCII characters (letters, numbers, punctuation) to exchange values.
-     - Meaning, lets say I pick these six values: A, 4, E, 3, T, 7
-     - We want to convert any A's we see into 4's
-     - We want to convert any 4's we see into A's
-     - We want to convert any E's we see into 3's
-     - We want to convert any 3's we see into E's
-     - We want to convert any T's we see into 7's
-     - We want to convert any 7's we see into T's
-
- 3. Reverse the entire string after conversion so it's backwards. (Helps make the message less readable)
-     - Example: "I went to the park and walked my dog."
-     - Result:  ".god ym d3kl4w dn4 kr4p 3h7 o7 7n3w I"
- 
- 4. Test your program by running it to ENCRYPT the data.
-
- 5. Test your program by running the output from step 4 (the encrypted message) again, you should get your original message now.
+ 1. Take part 1 and with using dictionaries, do your own mapping translation
 
 
 Requirements:
- 1. Must use a FOR EACH loops
-     - Example: Loop over the items in a list
-     conversion_temperatures = ['C', 'F', 'K']
-     for type in conversion_temperatures:
-        print(type)
+ 1. Must use a dictionary
 
- 2. Must work for all standard first 128 ASCII printable characters.
+ 2. Must not use any of these:
+        maketrans
+        translate
 
  3. Message should be "encrypted" and "decrypted" without errors.
- 
- 
+
+
+Lesson on Dictionaries:
+
+# Create a dictionary
+city_to_state = {'Anchorage':'Alaska','Seattle','Washington','San Fransisco':'California'}
+
+# Access a entry in the dictionary
+state = city_to_state['Anchorage']
+print(state) # Alaska
+
+# Add an item to a dictionary after creation
+city_to_state['Concord'] = 'New Hampshire'
+
+# Remove an item from a dictionary
+result = city_to_state.pop('Anchorage')
+
+# Getting the length of the dictionary
+num_of_entries = len(city_to_state)
+print(num_of_entries)
+
 TIPS:
- 1. Get this working without the reverse first to make sure the conversions are working.
+ 1. Play around with dictionaries
