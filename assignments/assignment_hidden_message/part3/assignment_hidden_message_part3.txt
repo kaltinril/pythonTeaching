@@ -1,6 +1,6 @@
 Hidden Message Part 1
 
-In this assignment you will create a program that can encrypt or decrypt a message for the user.
+In this assignment you will alter part2 to create your own mapping code.
 
 
 Items Learned:
