@@ -3,6 +3,7 @@ import sys
 import pygame
 from pygame.locals import *
 import random
+import math
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -18,6 +19,7 @@ snake_size = 2
 
 # List of "fruit" to eat
 fruit = [(50, 50)]
+fruit_size = 3
 
 # initialize everything for drawing
 pygame.init()
@@ -48,7 +50,7 @@ while True:
 
     # Draw the fruit
     for f in fruit:
-        pygame.draw.circle(screen, GREEN, f, 2)
+        pygame.draw.circle(screen, GREEN, f, fruit_size)
 
     # draw snake
     for point in snake:
@@ -73,14 +75,25 @@ while True:
     ):
         snake.clear()
         snake.append((SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
-        xv = 0
-        yv = 0
+        snake_v = (0, 0)
+        fruit.clear()
+
+    # Check if the snake collided with the fruit
+    for i in range(0, len(fruit)):
+        f = fruit[i]
+        distance = math.sqrt((f[0] - last_point[0])**2 + (f[1] - last_point[1])**2)
+        if distance < (snake_size + fruit_size):
+            fruit.pop(i)
+            break
 
     # Move the fruit every 10 seconds
-    if time_elapsed_since_last_action > 10000:
+    if time_elapsed_since_last_action > 10000 or len(fruit) == 0:
         x = random.randint(10, SCREEN_WIDTH - 10)
         y = random.randint(10, SCREEN_HEIGHT - 10)
-        fruit.pop()
+
+        if len(fruit) > 0:
+            fruit.pop()
+
         fruit.append((x, y))
         time_elapsed_since_last_action = 0
 
