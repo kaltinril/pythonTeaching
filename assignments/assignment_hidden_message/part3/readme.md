@@ -1,6 +1,6 @@
 # Hidden Message Part 3
 
-In this assignment you will copy [part1](https://github.com/kaltinril/pythonTeaching/blob/master/assignments/assignment_hidden_message/part1/assignment_hidden_message_part1.txt) to create a new part3 with your own mapping/translation functions and learn about dictionaries.
+In this assignment you will copy [part1](https://github.com/kaltinril/pythonTeaching/blob/master/assignments/assignment_hidden_message/part1) to create a new part3 with your own mapping/translation functions and learn about dictionaries.
 
 A dictionary is essentially just a `key:value` pair list, similar to **JSON**.
 
