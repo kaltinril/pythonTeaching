@@ -15,6 +15,9 @@ xv = 0
 yv = 0
 snake_size = 2
 
+# List of "fruit" to eat
+fruit = [(50, 50)]
+
 # initialize everything for drawing
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -47,8 +50,7 @@ while True:
 
     # draw snake
     for point in snake:
-        #screen.set_at(point, WHITE)
-        pygame.draw.circle(screen, WHITE, point, snake_size)
+        pygame.draw.circle(screen, WHITE, point, snake_size) #screen.set_at(point, WHITE) # This was to draw a single pixel
 
     pygame.display.flip()
 
@@ -59,6 +61,19 @@ while True:
 
     # remove the last point
     snake.pop(0)
+
+    # Check if the snake collided with the walls
+    if (
+        new_point[0] >= SCREEN_WIDTH
+        or new_point[0] <= 0
+        or new_point[1] >= SCREEN_HEIGHT
+        or new_point[1] <= 0
+    ):
+        snake.clear()
+        snake.append((SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
+        xv = 0
+        yv = 0
+
 
     # Force to 60 FPS
     fps_clock.tick(fps)
