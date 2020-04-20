@@ -47,15 +47,6 @@ def draw_ball(screen, position, size):
 
 
 def update(dt):
-    """
-    Update game. Called once per frame.
-    dt is the amount of time passed since last frame.
-    If you want to have constant apparent movement no matter your framerate,
-    what you can do is something like
-
-    x += v * dt
-
-    and this will scale your velocity based on time. Extend as necessary."""
 
     # Until we convert to using classes
     global BALL_V_X, BALL_V_Y
@@ -101,9 +92,6 @@ def update(dt):
         SCORES[1] += 1
 
 def draw(screen):
-    """
-    Draw things to the window. Called once per frame.
-    """
     screen.fill((0, 0, 0))  # Fill the screen with black.
 
     draw_bumper(screen, PLAYER1)
@@ -122,7 +110,6 @@ def run_game():
     fps_clock = pygame.time.Clock()
 
     # Set up the window.
-
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     # Main game loop.
