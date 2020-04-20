@@ -50,7 +50,8 @@ while True:
     pygame.display.flip()
 
     # move snake by adding another point with the velociy/direction, to the last position and adding it to the list
-    new_point = (snake[-1][0] + xv, snake[-1][1] + yv)
+    last_point = snake[-1]
+    new_point = (last_point[0] + xv, last_point[1] + yv)
     snake.append(new_point)
 
     # remove the last point
