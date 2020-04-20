@@ -4,6 +4,7 @@ import pygame
 from pygame.locals import *
 
 WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 fps = 60.0
@@ -12,6 +13,7 @@ fps = 60.0
 snake = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
 xv = 0
 yv = 0
+snake_size = 2
 
 # initialize everything for drawing
 pygame.init()
@@ -41,17 +43,18 @@ while True:
                 xv = 1
 
     # Clear screen
-    screen.fill((0, 0, 0))  # Fill the screen with black.
+    screen.fill(BLACK)  # Fill the screen with black.
 
     # draw snake
     for point in snake:
-        screen.set_at(point, WHITE)
+        #screen.set_at(point, WHITE)
+        pygame.draw.circle(screen, WHITE, point, snake_size)
 
     pygame.display.flip()
 
     # move snake by adding another point with the velociy/direction, to the last position and adding it to the list
     last_point = snake[-1]
-    new_point = (last_point[0] + xv, last_point[1] + yv)
+    new_point = (last_point[0] + (xv * snake_size), last_point[1] + (yv* snake_size))
     snake.append(new_point)
 
     # remove the last point
