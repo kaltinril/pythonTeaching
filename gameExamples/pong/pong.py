@@ -19,7 +19,6 @@ CYAN = (0, 255, 255)
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
 
-# Start the player positions, 0 is player1, 1 is player2
 PLAYER1 = [20, 240]
 PLAYER2 = [600, 240]
 PLAYER_HEIGHT = 50
@@ -38,7 +37,7 @@ SCORES = [0, 0]
 def draw_bumper(screen, position):
     x_draw = position[0] - (PLAYER_WIDTH / 2)
     y_draw = position[1] - (PLAYER_HEIGHT / 2)
-    draw_rect = pygame.Rect(x_draw, y_draw, 10, 50)
+    draw_rect = pygame.Rect(x_draw, y_draw, PLAYER_WIDTH, PLAYER_HEIGHT)
     pygame.draw.rect(screen, WHITE, draw_rect)
 
 
@@ -90,6 +89,7 @@ def update(dt):
         SCORES[0] += 1
     elif BALL[1] > SCREEN_WIDTH - BALL_SIZE:
         SCORES[1] += 1
+
 
 def draw(screen):
     screen.fill((0, 0, 0))  # Fill the screen with black.
