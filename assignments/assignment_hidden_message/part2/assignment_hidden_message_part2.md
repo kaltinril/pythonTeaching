@@ -56,7 +56,7 @@ print(string_trans)
 > Replace 3 with c, replaces a with 3
 
 ```python
-invalues = '123abc'
+invalues = "123abc"
 outvalues = 'abc123'
 mapping = str.maketrans(invalues, outvalues)
 string_example = '123, it's easy as abc.'
