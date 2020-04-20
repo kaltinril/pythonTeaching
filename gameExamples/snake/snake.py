@@ -21,9 +21,10 @@ fps = 60.0
 snake = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
 snake_v = (0, 0)
 snake_size = 2
+snake_length = 1
 
 # List of "fruit" to eat
-fruit = [(50, 50, 3, GREEN)]
+fruit = [[50, 50, 3, GREEN]]
 fruit_total = 4
 fruit_size = 3
 
@@ -64,23 +65,22 @@ while True:
 
     pygame.display.flip()
 
-    # move snake by adding another point with the velociy/direction, to the last position and adding it to the list
+    # move snake by adding another point with the velocity/direction, to the last position and adding it to the list
     last_point = snake[-1]
     new_point = (last_point[0] + (snake_v[0] * snake_size), last_point[1] + (snake_v[1] * snake_size))
     snake.append(new_point)
 
     # Check if the snake collided with the fruit
-    eaten = False
     for i in range(0, len(fruit)):
         f = fruit[i]
         distance = math.sqrt((f[0] - last_point[0])**2 + (f[1] - last_point[1])**2)
         if distance < (snake_size + f[2]):
             fruit.pop(i)
-            eaten = True
+            snake_length += 1
             break
 
     # remove the last point
-    if not eaten:
+    if len(snake) > snake_length:
         snake.pop(0)
 
     # Check if the snake collided with the walls
@@ -99,10 +99,16 @@ while True:
     if time_elapsed_since_last_action > 2000 or len(fruit) == 0:
         x = random.randint(10, SCREEN_WIDTH - 10)
         y = random.randint(10, SCREEN_HEIGHT - 10)
-        s = random.randint(2, 7)
+        s = random.randint(3, 10)
         c = random.randint(0, 2)
 
-        fruit.append((x, y, s, fruit_colors[c]))
+        # Slowly shrink the fruit size
+        for i in range(0, len(fruit)):
+            fruit[i][2] += -1
+            if fruit[i][2] < 1:
+                fruit[i][2] = 1
+
+        fruit.append([x, y, s, fruit_colors[c]])
         time_elapsed_since_last_action = 0
 
     # Only keep so many
