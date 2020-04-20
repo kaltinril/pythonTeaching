@@ -5,6 +5,7 @@ import sys
 
 import pygame
 from pygame.locals import *
+import random
 
 # define some colors (R, G, B)
 WHITE = (255, 255, 255)
@@ -26,10 +27,10 @@ PLAYER_WIDTH = 10
 PLAYER_SPEED = 5
 
 BALL = [int(SCREEN_WIDTH / 2), int(SCREEN_HEIGHT / 2)]
-BALL_SPEED = 5
+BALL_SPEED = 4
 BALL_SIZE = 10
-BALL_V_X = 1
-BALL_V_Y = 1
+BALL_V_X = 0
+BALL_V_Y = 0
 
 SCORES = [0, 0]
 
@@ -45,6 +46,26 @@ def draw_ball(screen, position, size):
     pygame.draw.circle(screen, WHITE, position, size)
 
 
+def reset_board():
+    global BALL_V_X, BALL_V_Y
+
+    BALL_V_X = 0
+    BALL_V_Y = 0
+    BALL[0] = int(SCREEN_WIDTH / 2)
+    BALL[1] = int(SCREEN_HEIGHT / 2)
+
+    PLAYER1[1] = 240
+    PLAYER2[1] = 240
+
+
+def draw_scores(screen, font):
+    score_str = font.render(str(SCORES[0]), True, WHITE)
+    screen.blit(score_str, (30, 30))
+
+    score_str = font.render(str(SCORES[1]), True, WHITE)
+    screen.blit(score_str, ((SCREEN_WIDTH - (30 + (score_str.get_width() // 2))), 30))
+
+
 def update(dt):
 
     # Until we convert to using classes
@@ -55,6 +76,10 @@ def update(dt):
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                BALL_V_X = -1 + (random.randint(0, 1) * 2)
+                BALL_V_Y = -1 + (random.randint(0, 1) * 2)
 
     # Move the player
     keys = pygame.key.get_pressed()
@@ -72,8 +97,6 @@ def update(dt):
     BALL[0] += (BALL_V_X * BALL_SPEED)
     BALL[1] += (BALL_V_Y * BALL_SPEED)
 
-    if BALL[0] > (SCREEN_WIDTH - BALL_SIZE):
-        BALL_V_X *= -1
     if BALL[1] > (SCREEN_HEIGHT - BALL_SIZE) or BALL[1] < BALL_SIZE:
         BALL_V_Y *= -1
 
@@ -86,17 +109,20 @@ def update(dt):
 
     # Give points
     if BALL[0] < BALL_SIZE:
-        SCORES[0] += 1
-    elif BALL[1] > SCREEN_WIDTH - BALL_SIZE:
         SCORES[1] += 1
+        reset_board()
+    elif BALL[0] > SCREEN_WIDTH - BALL_SIZE:
+        SCORES[0] += 1
+        reset_board()
 
 
-def draw(screen):
+def draw(screen, font):
     screen.fill((0, 0, 0))  # Fill the screen with black.
 
     draw_bumper(screen, PLAYER1)
     draw_bumper(screen, PLAYER2)
     draw_ball(screen, BALL, BALL_SIZE)
+    draw_scores(screen, font)
 
     # Flip the display so that the things we drew actually show up.
     pygame.display.flip()
@@ -111,12 +137,13 @@ def run_game():
 
     # Set up the window.
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    font = pygame.font.SysFont("comicsansms", 36)
 
     # Main game loop.
     dt = 1 / fps  # dt is the time since last frame.
     while True:  # Loop forever!
         update(dt)
-        draw(screen)
+        draw(screen, font)
 
         dt = fps_clock.tick(fps)
 
