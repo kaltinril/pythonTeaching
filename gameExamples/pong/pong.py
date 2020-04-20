@@ -27,7 +27,7 @@ PLAYER_WIDTH = 10
 PLAYER_SPEED = 5
 
 BALL = [int(SCREEN_WIDTH / 2), int(SCREEN_HEIGHT / 2)]
-BALL_SPEED = 4
+BALL_SPEED = 3
 BALL_SIZE = 10
 BALL_V_X = 0
 BALL_V_Y = 0
@@ -81,12 +81,17 @@ def update(dt):
                 BALL_V_X = -1 + (random.randint(0, 1) * 2)
                 BALL_V_Y = -1 + (random.randint(0, 1) * 2)
 
-    # Move the player
+    # Move the paddles
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_UP]:
+    if keys[pygame.K_w]:
         PLAYER1[1] -= PLAYER_SPEED
-    if keys[pygame.K_DOWN]:
+    if keys[pygame.K_s]:
         PLAYER1[1] += PLAYER_SPEED
+    # Player 2
+    if keys[pygame.K_UP]:
+        PLAYER2[1] -= PLAYER_SPEED
+    if keys[pygame.K_DOWN]:
+        PLAYER2[1] += PLAYER_SPEED
 
     # Restrict the player bounds
     if PLAYER1[1] > (SCREEN_HEIGHT - 25):
@@ -94,6 +99,12 @@ def update(dt):
     if PLAYER1[1] < 25:
         PLAYER1[1] = 25
 
+    if PLAYER2[1] > (SCREEN_HEIGHT - 25):
+        PLAYER2[1] = SCREEN_HEIGHT - 25
+    if PLAYER2[1] < 25:
+        PLAYER2[1] = 25
+
+    # Move the ball
     BALL[0] += (BALL_V_X * BALL_SPEED)
     BALL[1] += (BALL_V_Y * BALL_SPEED)
 
@@ -105,6 +116,11 @@ def update(dt):
     if BALL[0] <= PLAYER1[0] + (PLAYER_WIDTH / 2):
         # If the ball is within the Y value of the player
         if PLAYER1[1] + (PLAYER_HEIGHT / 2) >= BALL[1] >= PLAYER1[1] - (PLAYER_HEIGHT / 2):
+            BALL_V_X *= -1
+
+    if BALL[0] >= PLAYER2[0] - (PLAYER_WIDTH / 2):
+        # If the ball is within the Y value of the player
+        if PLAYER2[1] + (PLAYER_HEIGHT / 2) >= BALL[1] >= PLAYER2[1] - (PLAYER_HEIGHT / 2):
             BALL_V_X *= -1
 
     # Give points
