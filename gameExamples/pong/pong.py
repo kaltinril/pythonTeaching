@@ -11,16 +11,8 @@ WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 BLACK = (0, 0, 0)
-FUCHSIA = (255, 0, 255)
 GRAY = (128, 128, 128)
-LIME = (0, 128, 0)
-MAROON = (128, 0, 0)
-NAVYBLUE = (0, 0, 128)
-OLIVE = (128, 128, 0)
-PURPLE = (128, 0, 128)
 RED = (255, 0, 0)
-SILVER = (192, 192, 192)
-TEAL = (0, 128, 128)
 YELLOW = (255, 255, 0)
 ORANGE = (255, 128, 0)
 CYAN = (0, 255, 255)
@@ -39,6 +31,8 @@ BALL_SPEED = 5
 BALL_SIZE = 10
 BALL_V_X = 1
 BALL_V_Y = 1
+
+SCORES = [0, 0]
 
 
 def draw_bumper(screen, position):
@@ -63,6 +57,9 @@ def update(dt):
 
     and this will scale your velocity based on time. Extend as necessary."""
 
+    # Until we convert to using classes
+    global BALL_V_X, BALL_V_Y
+
     # Go through events that are passed to the script by the window.
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -85,8 +82,23 @@ def update(dt):
     BALL[0] += (BALL_V_X * BALL_SPEED)
     BALL[1] += (BALL_V_Y * BALL_SPEED)
 
-    #if BALL[0] > (SCREEN_HEIGHT - BALL_SIZE[0]):
-        #BALL_V_X *= -1
+    if BALL[0] > (SCREEN_WIDTH - BALL_SIZE):
+        BALL_V_X *= -1
+    if BALL[1] > (SCREEN_HEIGHT - BALL_SIZE) or BALL[1] < BALL_SIZE:
+        BALL_V_Y *= -1
+
+    # Do simple position check, not real collision check
+    # If the ball is to the LEFT of player1
+    if BALL[0] <= PLAYER1[0] + (PLAYER_WIDTH / 2):
+        # If the ball is within the Y value of the player
+        if PLAYER1[1] + (PLAYER_HEIGHT / 2) >= BALL[1] >= PLAYER1[1] - (PLAYER_HEIGHT / 2):
+            BALL_V_X *= -1
+
+    # Give points
+    if BALL[0] < BALL_SIZE:
+        SCORES[0] += 1
+    elif BALL[1] > SCREEN_WIDTH - BALL_SIZE:
+        SCORES[1] += 1
 
 def draw(screen):
     """
