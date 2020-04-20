@@ -10,6 +10,7 @@ BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
+GRAY = (128, 128, 128)
 
 fruit_colors = [RED, GREEN, BLUE]
 
@@ -18,15 +19,15 @@ SCREEN_HEIGHT = 480
 fps = 60.0
 
 # List of points for the snake
-snake = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
+snake = [[SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, 2]]
 snake_v = (0, 0)
 snake_size = 2
-snake_length = 1
+snake_length = 3
+snake_speed = 2
 
 # List of "fruit" to eat
-fruit = [[50, 50, 3, GREEN]]
-fruit_total = 4
-fruit_size = 3
+fruit = [[50, 50, 5, GREEN]]
+fruit_total = 5
 
 # initialize everything for drawing
 pygame.init()
@@ -55,28 +56,36 @@ while True:
     # Clear screen
     screen.fill(BLACK)  # Fill the screen with black.
 
-    # Draw the fruit
+    # draw snake
+    for i in range(0, len(snake)):
+        p = snake[i]
+        v = (i / len(snake)) * 255
+        print(v)
+        pygame.draw.circle(screen, (v, v, v), p[0:2], p[2]) #screen.set_at(point, WHITE) # This was to draw a single pixel
+
+    # Draw the fruit after, so we can see them above the tail
     for f in fruit:
         pygame.draw.circle(screen, f[3], (f[0], f[1]), f[2])
-
-    # draw snake
-    for point in snake:
-        pygame.draw.circle(screen, WHITE, point, snake_size) #screen.set_at(point, WHITE) # This was to draw a single pixel
 
     pygame.display.flip()
 
     # move snake by adding another point with the velocity/direction, to the last position and adding it to the list
     last_point = snake[-1]
-    new_point = (last_point[0] + (snake_v[0] * snake_size), last_point[1] + (snake_v[1] * snake_size))
+    new_point = [last_point[0] + (snake_v[0] * snake_speed), last_point[1] + (snake_v[1] * snake_speed), snake_size]
     snake.append(new_point)
 
     # Check if the snake collided with the fruit
     for i in range(0, len(fruit)):
         f = fruit[i]
         distance = math.sqrt((f[0] - last_point[0])**2 + (f[1] - last_point[1])**2)
-        if distance < (snake_size + f[2]):
+
+        # Remove the fruit and increase the length of the snake
+        if distance < (last_point[2] + f[2]):
             fruit.pop(i)
-            snake_length += 1
+            # Increase by the size of the fruit * 2
+            snake_length = snake_length + (f[2] * 2)
+            if f[3] == RED:
+                snake_size += 2
             break
 
     # remove the last point
@@ -91,7 +100,7 @@ while True:
         or new_point[1] <= 0
     ):
         snake.clear()
-        snake.append((SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
+        snake.append([SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, snake_size])
         snake_v = (0, 0)
         fruit.clear()
 
@@ -99,8 +108,8 @@ while True:
     if time_elapsed_since_last_action > 2000 or len(fruit) == 0:
         x = random.randint(10, SCREEN_WIDTH - 10)
         y = random.randint(10, SCREEN_HEIGHT - 10)
-        s = random.randint(3, 10)
-        c = random.randint(0, 2)
+        s = random.randint(5, 15) # Fruit size
+        c = random.randint(0, 2)  # Fruit color index
 
         # Slowly shrink the fruit size
         for i in range(0, len(fruit)):
