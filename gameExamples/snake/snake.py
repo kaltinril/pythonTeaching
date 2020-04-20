@@ -8,6 +8,11 @@ import math
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+
+fruit_colors = [RED, GREEN, BLUE]
+
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 fps = 60.0
@@ -18,7 +23,8 @@ snake_v = (0, 0)
 snake_size = 2
 
 # List of "fruit" to eat
-fruit = [(50, 50)]
+fruit = [(50, 50, 3, GREEN)]
+fruit_total = 4
 fruit_size = 3
 
 # initialize everything for drawing
@@ -50,7 +56,7 @@ while True:
 
     # Draw the fruit
     for f in fruit:
-        pygame.draw.circle(screen, GREEN, f, fruit_size)
+        pygame.draw.circle(screen, f[3], (f[0], f[1]), f[2])
 
     # draw snake
     for point in snake:
@@ -63,8 +69,19 @@ while True:
     new_point = (last_point[0] + (snake_v[0] * snake_size), last_point[1] + (snake_v[1] * snake_size))
     snake.append(new_point)
 
+    # Check if the snake collided with the fruit
+    eaten = False
+    for i in range(0, len(fruit)):
+        f = fruit[i]
+        distance = math.sqrt((f[0] - last_point[0])**2 + (f[1] - last_point[1])**2)
+        if distance < (snake_size + f[2]):
+            fruit.pop(i)
+            eaten = True
+            break
+
     # remove the last point
-    snake.pop(0)
+    if not eaten:
+        snake.pop(0)
 
     # Check if the snake collided with the walls
     if (
@@ -78,24 +95,19 @@ while True:
         snake_v = (0, 0)
         fruit.clear()
 
-    # Check if the snake collided with the fruit
-    for i in range(0, len(fruit)):
-        f = fruit[i]
-        distance = math.sqrt((f[0] - last_point[0])**2 + (f[1] - last_point[1])**2)
-        if distance < (snake_size + fruit_size):
-            fruit.pop(i)
-            break
-
-    # Move the fruit every 10 seconds
-    if time_elapsed_since_last_action > 10000 or len(fruit) == 0:
+    # spawn another fruit every 2 seconds
+    if time_elapsed_since_last_action > 2000 or len(fruit) == 0:
         x = random.randint(10, SCREEN_WIDTH - 10)
         y = random.randint(10, SCREEN_HEIGHT - 10)
+        s = random.randint(2, 7)
+        c = random.randint(0, 2)
 
-        if len(fruit) > 0:
-            fruit.pop()
-
-        fruit.append((x, y))
+        fruit.append((x, y, s, fruit_colors[c]))
         time_elapsed_since_last_action = 0
+
+    # Only keep so many
+    if len(fruit) > fruit_total:
+        fruit.pop(0)
 
     # Force to 60 FPS
     dt = fps_clock.tick(fps)
