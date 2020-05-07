@@ -57,7 +57,7 @@ while True:
   # Draw a GREEN rectangle
   pygame.draw.rect(screen, GREEN, (170, 120, 130, 190))
   
-  # Draw a CYAN circle
+  # Draw a BLUE circle
   pygame.draw.circle(screen, BLUE, (300, 200), 30, 0)
   
   # Flip the display so that the things we drew actually show up.
