@@ -40,6 +40,9 @@ YELLOW = (255, 255, 0)
 ORANGE = (255, 128, 0)
 CYAN = (0, 255, 255)
 
+# Define the clock
+clock = pygame.time.Clock()
+
 # Loop forever
 while True:
   # Clear background to gray
