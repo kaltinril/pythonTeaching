@@ -1,17 +1,28 @@
-from datetime import date
+from datetime import date, timedelta
 import pet
 
+pets = []
 
-p = pet.pet('Shadow', 'mammal', 'cat', birthdate='2019-01-01', last_fed='2020-05-19')
+p1 = pet.pet('Shadow', 'mammal', 'cat')
+pets.append(p1)
+p1 = pet.pet('Midnight', 'mammal', 'cat', '2001-01-19', ['black'], True, False, 4, str(date.today()))
+pets.append(p1)
+p1 = pet.pet('Pepper', 'mammal', 'cat', last_fed=str(date.today() - timedelta(1)))
+pets.append(p1)
+p1 = pet.pet('Tigger', 'mammal', 'cat', last_fed=str(date.today() - timedelta(10)))
+pets.append(p1)
+
+for p in pets:
+    if p.is_fed():
+        print('Pet', p.name, 'is fed!')
+    else:
+        print('Pet', p.name, 'is not fed!')
+        last_fed = p.days_since_last_fed()
+        if last_fed <= 3:
+            p.feed(date.today())
+            print('Pet', p.name, 'was last fed', last_fed, 'days ago, and has been fed today.')
+        else:
+            p.died(date.today())
+            print('Pet', p.name, 'died! It was last fed', last_fed, 'days ago, you monster!')
 
 
-print(p.name, 'is', p.age(), 'years old.')
-print('Today is: ' + str(date.today()))
-print('Last fed: ' + p.last_fed)
-print('I fed the cat today? ', p.is_fed())
-print('Pet is alive?', p.is_alive())
-
-p.feed(date.today())
-print('Last fed: ' + p.last_fed)
-print('I fed the cat today? ', p.is_fed())
-print('Pet is alive?', p.is_alive())

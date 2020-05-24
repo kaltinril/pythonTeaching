@@ -29,18 +29,23 @@ class pet:
     # Return if the pet is fed or not (True/False)
     # Based on the last_fed date.
     def is_fed(self):
+        return self.days_since_last_fed() < 1
+
+    def days_since_last_fed(self):
         if self.last_fed is None:
-            return False
+            return 99999
 
         now = str(date.today())
-        return self.__days_diff(self.last_fed, now) < 1
+        return self.__days_diff(self.last_fed, now)
 
     # Sets the ped as dead if the last fed jumps more than 3 days
     # Returns True if the pet is alive and we were able to update the last_fed variable
     # Returns False if the pet was killed because it was not fed in 3 days
     def feed(self, date_fed):
         if not self.is_alive():
-            return False # Can't feed a dead cat !
+            return False  # Can't feed a dead cat !
+        elif self.is_fed():
+            return True  # Cat already ate, don't believe her lies
         elif self.__days_diff(self.last_fed, str(date_fed)) > 3:
             self.died(date_fed)
             return False
