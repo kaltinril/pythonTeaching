@@ -12,6 +12,7 @@ class pet:
         self.has_wings = has_wings
         self.num_of_legs = num_of_legs
         self.last_fed = last_fed
+        self.deathdate = None
 
     def __days_diff(self, start_date, end_date):
         d1 = datetime.strptime(start_date, "%Y-%m-%d")
@@ -33,4 +34,25 @@ class pet:
 
         now = str(date.today())
         return self.__days_diff(self.last_fed, now) < 1
+
+    # Sets the ped as dead if the last fed jumps more than 3 days
+    # Returns True if the pet is alive and we were able to update the last_fed variable
+    # Returns False if the pet was killed because it was not fed in 3 days
+    def feed(self, date_fed):
+        if not self.is_alive():
+            return False # Can't feed a dead cat !
+        elif self.__days_diff(self.last_fed, str(date_fed)) > 3:
+            self.died(date_fed)
+            return False
+        else:
+            self.last_fed = str(date_fed)
+            return True
+
+    # Record the pets death
+    def died(self, date_died):
+        self.deathdate = str(date_died)
+
+    # Simple helper method to make if statements more readable
+    def is_alive(self):
+        return self.deathdate is None
 
