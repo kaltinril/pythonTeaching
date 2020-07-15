@@ -93,9 +93,10 @@ We will be doing all of this in text, and will not be doing real drawing of any 
 
  - point2d.py
  - bullet.py
+ - plain_bullet.py
  - laser.py
  - missile.py
- - machinegun.py
+ - machine_gun.py
  - classes_part2.py
 
 ## Assignment Pieces (point2d.py)
@@ -128,12 +129,10 @@ We will create a class that will be our root/base/parent class.  Some of the var
 1. Create a class method in bullet called `draw`.
    - If the bullet is visible and active.
      - Print out the following all on one line:
-       - Type of bullet:
-         - bullet, plain_bullet, laser, missile, machine_gun
+       - The text 'Bullet'
        - Position
        - Velocity
      - example:  Bullet 100, 100 3, 5 
-     - example:  Laser 200, 100 1, 2
 1. Create a class method in bullet called `destroy`.
    - This method will change **self.active** and **self.visible** to `False`.
 1. Create a class method in bullet called `apply_damage`.
@@ -290,6 +289,13 @@ This will be a class that creates instances of bullets and loops over them.
 1. Create another new loop to loop 3 times and do the following
    - Inside the above loop: loop over the **bullet_list** 
      - Call the `update` and `draw` methods.
+1. Create another new loop, loop over the bullet_list once.
+   - Call `apply_damage` for each member of the list (simulate bullet hit enemy ship)
+     - pass in ship we hit, example 'boss'
+1. Create another new loop, loop over the bullet_list once
+   - Call `destroy` for each member of the list (simulate bullet hit enemy ship)
+1. Create another new loop, loop over the bullet_list once
+   - Call `draw`, nothing should be printed because they are all no longer active.
 
 ## Example output:
 
@@ -327,3 +333,12 @@ Notice how the position is updating based on the value of velocity each time we 
 > Missile 324, 18 0, 3 smoke big_boss_battle_enemy
 >
 > Machine Gun 90, 9 0, 2
+> 1 damage done to boss
+> 
+> 2 damage done to boss
+>
+> 3 damage done to boss
+> 
+> 3 damage done to boss
+>
+> 3 damage done to boss
