@@ -173,7 +173,21 @@ This class will inherit from Bullet.  It will have a few small changes to make i
 1. Inside **laser.py** create a class called Laser that inherits from `Bullet`.
 1. Create a constructor `__init__` to override the parent Bullet's constructor.  
    - To make this easier, copy the declaration from Bullet.
-   - Remove the Active parameter, the laser is always on once created.
+   - Remove the Active parameter from the list of arguments, the laser is always on once created.
+     - Notice in the code example how I explicitly pass in True for Active to the parent
+   - Use the `super()` keyword to pass the variables into the parent's `__init__` constructor.
+     - Example:
+       ```python
+       def __init__(damage, velocity, position, visible=True, etc=True):
+         super().__init__(damage, velocity, position, True, etc) # This calls Bullet's __init__ method
+       ```  
+1. Create a new draw method, it should be the same as bullet's except it should print Laser instead
+   - This is to simulate how the drawing could be completely different for the laser bullet type.
+   - Example output:  Laser 100, 100, 0, 1
+1. 
+   
+
+
 
 ## Assignment Pieces (classes_part2.py)
 
