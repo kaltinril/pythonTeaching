@@ -333,6 +333,7 @@ Notice how the position is updating based on the value of velocity each time we 
 > Missile 324, 18 0, 3 smoke big_boss_battle_enemy
 >
 > Machine Gun 90, 9 0, 2
+>
 > 1 damage done to boss
 > 
 > 2 damage done to boss
