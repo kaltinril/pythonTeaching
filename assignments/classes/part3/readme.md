@@ -217,6 +217,34 @@ This class will inherit from Bullet.  It will have a few small changes to make i
    - This is to simulate how the drawing could be completely different for the missile bullet type.
    - Example output:  Missile 100, 100 0, 1 smoke big_boss_battle_enemy
 
+## Assignment Pieces (machine_gun.py)
+
+This class will inherit from Bullet.  It will have a few small changes to make it unique.
+
+### Items learned in machine_gun.py
+1. We will learn how to hard code and exclude a parameter from the sub-class constructor.
+1. We will learn how to add extra parameters to the sub-class constructor.
+1. Learn how to override a method
+
+### Steps to create
+1. Inside **machine_gun.py** create a class called MachineGun that inherits from `Bullet`.
+1. Create a constructor `__init__` to override the parent Bullet's constructor.  
+   - Similar to laser, there is no need for Active, it will always be active.
+   - Add another required parameter `overheat_time`.
+     - This is how long until we overheat the gun (seconds)
+     - This is a variable to simulate the idea that the machine gun will overheat and we can't fire again until it cools down.
+     - We won't be implementing anything for this really except toggling the next instance variable.
+1. Add another instance variable called `overheated` and default it to `False`.
+   - That isn't allowed to be passed in, and shouldn't be in the constructor arguments.
+   - This will be toggled to True when the gun overheats (We'll simulate this) and back to False once it cools down (We won't do this)
+1. Override the draw method by creating it again in this class.  It should be the same as bullet's except:
+   - it should print **Machine Gun** instead
+   - Add another print that prints out the message "I've given her all she's got capt'n" if overheated is True
+     - This is to simulate how the drawing could be completely different for the missile bullet type.
+     - For instance, the machine gun could glow red, and give off smoke, indicating it overheated
+   - Example output:  Machine Gun 100, 100 0, 1 "I've given her all she's got capt'n"
+1. Override the `update` method to toggle the Overheated variable every time update is called.
+   - Don't forget to call super().update()
 
 ## Assignment Pieces (classes_part2.py)
 
@@ -226,74 +254,58 @@ This will be a class that creates instances of bullets and loops over them.
 
 1. From the files you've created, import the classes from each.
     ```python
+    from point2d import Point2d
     from bullet import Bullet
+    from plain_bullet import PlainBullet
     from laser import Laser
     from missile import Missile
     from machinegun import MachineGun
     ```
 
 1. Create an empty list called **bullet_list**.
-1. Create an instance of a `Bullet` class called **bullet**.
-1. Create an instance of a `Laser` class called **laser**.
-1. Create an instance of a `Missile` class called **missile**.
-1. Create an instance of a `MachineGun` class called **machine_gun**.
-1. Add each of the above instances to the **bullet_list**
-1. Loop over the **bullet_list** and call the `update` and `draw` methods.
+1. Create an instance of a `Bullet` class called **b**.
+   - Damage: Anything
+   - Velocity: 0, 1
+   - Position: 100, 100
+1. Create an instance of a `PlainBullet` class called **p**.
+   - Damage: Anything
+   - Velocity: 5, 1
+   - Position: 200, 200
+1. Create an instance of a `Laser` class called **l**.
+   - Damage: Anything
+   - Velocity: 0, 7
+   - Position: 140, 102
+1. Create an instance of a `Missile` class called **m**.
+   - Damage: Anything
+   - Velocity: 0, 3
+   - Position: 324, 12
+   - target: 'big_boss_battle_enemy'
+1. Create an instance of a `MachineGun` class called **mg**.
+   - Damage: Anything
+   - Velocity: 0, 2
+   - Position: 90, 5
+   - overheat_time: anything
+1. Append each of the above instances to the **bullet_list**
+1. Loop over the bullet_list and call `fire` on each instance.
+1. Create another new loop to loop 3 times and do the following
+   - Inside the above loop: loop over the **bullet_list** 
+     - Call the `update` and `draw` methods.
 
-## Requirements:
-1. Must create a real class for pet in pet.py
-1. Must have a constructor that requires the first 3 variables.  Others are optional and should be set to their defaults.
-1. Must have all the functions created with their required arguments and return variables.
+## Example output:
 
----
 
-## Lessons on Classes:
-
-In these example files we create a class called State.  This class is designed
-to store 
-
-### How to create a class called "State" in file state.py
-```python
-from datetime import datetime, timedelta, timezone
-
-class State:
-    def __init__(self, name, capital, population = None, gmt_offset = -9):
-        self.name = name
-        self.capital = capital
-        self.population = population
-        self.gmt_offset = gmt_offset
-    
-    def display(self):
-        print('The capital of ' + self.name + ' is ' + self.capital)
-    
-    def get_local_time(self):
-        return datetime.now(timezone.utc) + timedelta(hours=self.gmt_offset)
-    
-    def record_births(self, total_births):
-        self.population += total_births
-    
-    def record_deaths(self, total_deaths):
-        self.population += total_deaths
-        
-        # Can't have a negative population
-        if self.population < 0:
-            self.population = 0
-```
-
-### How to create an instance of the class from another file
-```python
-import state
-s = state.State('Alaska', 'Juneau', 700000)
-```
-
-### How to access functions in a class
-```python
-import state
-s = state.State('Alaska', 'Juneau', 700000)
-
-s.record_births(150)
-s.record_deaths(10)
-
-s.display()
-print(s.get_local_time())
-```
+> Bullet 100, 100 0, 1
+> Bullet 200, 200 5, 1
+> Laser 140, 102 0, 7
+> Missile 324, 12 0, 3 smoke big_boss_battle_enemy
+> Machine Gun 90, 5 0, 2
+> Bullet 100, 101 0, 1
+> Bullet 205, 201 5, 1
+> Laser 140, 109 0, 7
+> Missile 324, 15 0, 3 smoke big_boss_battle_enemy
+> Machine Gun 90, 7 0, 2 I've given her all she's got capt'n
+> Bullet 100, 102 0, 1
+> Bullet 210, 202 5, 1
+> Laser 140, 116 0, 7
+> Missile 324, 18 0, 3 smoke big_boss_battle_enemy
+> Machine Gun 90, 9 0, 2
