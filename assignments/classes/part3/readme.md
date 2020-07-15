@@ -293,19 +293,37 @@ This will be a class that creates instances of bullets and loops over them.
 
 ## Example output:
 
+Notice how PlainBullet just prints bullet because we didn't change it's draw method.
 
+Notice how Machine Gun, while first time calling draw it not overheated, but second time it is because we called update inbetween.
+
+Notice how the position is updating based on the value of velocity each time we call update.
 > Bullet 100, 100 0, 1
+>
 > Bullet 200, 200 5, 1
+>
 > Laser 140, 102 0, 7
+>
 > Missile 324, 12 0, 3 smoke big_boss_battle_enemy
+>
 > Machine Gun 90, 5 0, 2
+>
 > Bullet 100, 101 0, 1
-> Bullet 205, 201 5, 1
+>
+> Bullet 205, 201 5, 1 
+>
 > Laser 140, 109 0, 7
+>
 > Missile 324, 15 0, 3 smoke big_boss_battle_enemy
+>
 > Machine Gun 90, 7 0, 2 I've given her all she's got capt'n
+>
 > Bullet 100, 102 0, 1
+>
 > Bullet 210, 202 5, 1
+>
 > Laser 140, 116 0, 7
+>
 > Missile 324, 18 0, 3 smoke big_boss_battle_enemy
+>
 > Machine Gun 90, 9 0, 2
