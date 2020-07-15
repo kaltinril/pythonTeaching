@@ -1,3 +1,3 @@
 from bullet import Bullet
-class Laser(Bullet):
+class PlainBullet(Bullet):
   pass

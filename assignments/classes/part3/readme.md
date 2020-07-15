@@ -127,7 +127,13 @@ We will create a class that will be our root/base/parent class.  Some of the var
      - This should update the position using the velocity.  To do this add both together, then update the position with the result.
 1. Create a class method in bullet called `draw`.
    - If the bullet is visible and active.
-     - Print out the position and Velocity values.
+     - Print out the following all on one line:
+       - Type of bullet:
+         - bullet, plain_bullet, laser, missile, machine_gun
+       - Position
+       - Velocity
+     - example:  Bullet 100, 100, 3, 5 
+     - example:  Laser 200, 100, 1, 2
 1. Create a class method in bullet called `destroy`.
    - This method will change **self.active** and **self.visible** to `False`.
 1. Create a class method in bullet called `apply_damage`.
@@ -139,7 +145,7 @@ We will create a class that will be our root/base/parent class.  Some of the var
 
 That's it, our parent bullet class is complete.
 
-## Assignment Pieces (laser.py)
+## Assignment Pieces (plain_bullet.py)
 
 This class will have no new functionality, only to demonstrate it is possible to create an empty named child class
 
@@ -149,7 +155,7 @@ Note the keyword `pass` which allows us to create this empty (and pretty useless
 
 ```python
 from bullet import Bullet
-class Laser(Bullet):
+class PlainBullet(Bullet):
   pass
 ```
 
@@ -157,6 +163,17 @@ This gives us the basic framework for a child sub-class.  All other classes will
 We may override or change functionality in specific methods, add new variables, and even change the constructor.
 
 The keyword `pass` will not be used in the other sub-classes.
+
+
+## Assignment Pieces (laser.py)
+
+This class will inherit from Bullet.  It will have a few small changes to make it unique.
+
+
+1. Inside **laser.py** create a class called Laser that inherits from `Bullet`.
+1. Create a constructor `__init__` to override the parent Bullet's constructor.  
+   - To make this easier, copy the declaration from Bullet.
+   - Remove the Active parameter, the laser is always on once created.
 
 ## Assignment Pieces (classes_part2.py)
 

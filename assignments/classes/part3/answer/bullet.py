@@ -15,10 +15,16 @@ class Bullet:
         if self.visible and self.active:
             # NOTE: Normally we wouldn't put a print in here, but this is a substitute for the real draw function
             #  we might use if we were using pygame or pygamezero
-            print(self.position, self.velocity)
+            print('Bullet', self.position, self.velocity)
 
     def destroy(self):
         self.active = False
         self.visible = False
 
-    # def apply_damage(self, hit_object):
+    def apply_damage(self, hit_object):
+        print(self.damage, 'damage done to', hit_object)
+
+    def fire(self):
+        if not self.active:
+            self.active = True
+
