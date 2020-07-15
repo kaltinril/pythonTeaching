@@ -132,8 +132,8 @@ We will create a class that will be our root/base/parent class.  Some of the var
          - bullet, plain_bullet, laser, missile, machine_gun
        - Position
        - Velocity
-     - example:  Bullet 100, 100, 3, 5 
-     - example:  Laser 200, 100, 1, 2
+     - example:  Bullet 100, 100 3, 5 
+     - example:  Laser 200, 100 1, 2
 1. Create a class method in bullet called `destroy`.
    - This method will change **self.active** and **self.visible** to `False`.
 1. Create a class method in bullet called `apply_damage`.
@@ -169,6 +169,11 @@ The keyword `pass` will not be used in the other sub-classes.
 
 This class will inherit from Bullet.  It will have a few small changes to make it unique.
 
+### Items learned in laser.py
+1. We will learn how to hard code and exclude a parameter from the sub-class constructor.
+1. Learn how to override a method
+
+### Steps to create
 
 1. Inside **laser.py** create a class called Laser that inherits from `Bullet`.
 1. Create a constructor `__init__` to override the parent Bullet's constructor.  
@@ -183,10 +188,34 @@ This class will inherit from Bullet.  It will have a few small changes to make i
        ```  
 1. Create a new draw method, it should be the same as bullet's except it should print Laser instead
    - This is to simulate how the drawing could be completely different for the laser bullet type.
-   - Example output:  Laser 100, 100, 0, 1
-1. 
-   
+   - Example output:  Laser 100, 100 0, 1
 
+
+## Assignment Pieces (missile.py)
+
+This class will inherit from Bullet.  It will have a few small changes to make it unique.
+
+### Items learned in missile.py
+1. We will learn how to add extra parameters to the sub-class constructor.
+1. Learn how to override a method
+
+### Steps to create
+1. Inside **missile.py** create a class called Missile that inherits from `Bullet`.
+1. Create a constructor `__init__` to override the parent Bullet's constructor.  
+   - To make this easier, copy the declaration from Bullet.
+   - Add another parameter to this method.
+     - **target:** string: The name of the target (Simulates the idea of the missile locking onto an enemy ship)
+   - Use the `super()` keyword to pass the variables into the parent's `__init__` constructor.
+     - NOTE: Do not pass the target variable into the super's init.
+   - After calling super().__init(...) set the instance variable for `target`.
+1. Create a new draw method, it should be the same as bullet's except:
+   - it should print Missile instead
+   - Add another print that prints out the word "smoke".
+      - This simulates that we could be drawing smoke trails behind the missile
+   - Add another print that prints out the target the missile is locked on to
+     - NOTE: This is the target that was passed into the constructor.
+   - This is to simulate how the drawing could be completely different for the missile bullet type.
+   - Example output:  Missile 100, 100 0, 1 smoke big_boss_battle_enemy
 
 
 ## Assignment Pieces (classes_part2.py)
