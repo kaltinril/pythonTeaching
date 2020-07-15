@@ -93,9 +93,10 @@ We will be doing all of this in text, and will not be doing real drawing of any 
 
  - point2d.py
  - bullet.py
+ - plain_bullet.py
  - laser.py
  - missile.py
- - machinegun.py
+ - machine_gun.py
  - classes_part2.py
 
 ## Assignment Pieces (point2d.py)
