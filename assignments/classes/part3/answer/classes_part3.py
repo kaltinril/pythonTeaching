@@ -31,3 +31,13 @@ for i in range(0, 3):
     for bul in bullet_list:
         bul.draw()
         bul.update()
+
+for bul in bullet_list:
+    bul.apply_damage('boss')
+
+for bul in bullet_list:
+    bul.destroy()
+
+for bul in bullet_list:
+    bul.draw()
+

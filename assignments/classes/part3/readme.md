@@ -289,6 +289,13 @@ This will be a class that creates instances of bullets and loops over them.
 1. Create another new loop to loop 3 times and do the following
    - Inside the above loop: loop over the **bullet_list** 
      - Call the `update` and `draw` methods.
+1. Create another new loop, loop over the bullet_list once.
+   - Call `apply_damage` for each member of the list (simulate bullet hit enemy ship)
+     - pass in ship we hit, example 'boss'
+1. Create another new loop, loop over the bullet_list once
+   - Call `destroy` for each member of the list (simulate bullet hit enemy ship)
+1. Create another new loop, loop over the bullet_list once
+   - Call `draw`, nothing should be printed because they are all no longer active.
 
 ## Example output:
 
@@ -326,3 +333,12 @@ Notice how the position is updating based on the value of velocity each time we 
 > Missile 324, 18 0, 3 smoke big_boss_battle_enemy
 >
 > Machine Gun 90, 9 0, 2
+> 1 damage done to boss
+> 
+> 2 damage done to boss
+>
+> 3 damage done to boss
+> 
+> 3 damage done to boss
+>
+> 3 damage done to boss
