@@ -129,12 +129,10 @@ We will create a class that will be our root/base/parent class.  Some of the var
 1. Create a class method in bullet called `draw`.
    - If the bullet is visible and active.
      - Print out the following all on one line:
-       - Type of bullet:
-         - bullet, plain_bullet, laser, missile, machine_gun
+       - The text 'Bullet'
        - Position
        - Velocity
      - example:  Bullet 100, 100 3, 5 
-     - example:  Laser 200, 100 1, 2
 1. Create a class method in bullet called `destroy`.
    - This method will change **self.active** and **self.visible** to `False`.
 1. Create a class method in bullet called `apply_damage`.
