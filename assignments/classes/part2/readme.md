@@ -140,6 +140,7 @@ We will use this class in part3 to create a bullet class, and learn about `inher
 1. Create an operator overload for **division** / using the method name `__truediv__`.
 1. Create an operator overload for **equals** == using the method name `__eq__`.
 1. Create an operator overload for **not equals** != using the method name `__ne__`.
+1. Create an operator overload for **String** using the method name `__str__`.
 
 
 ## Assignment Pieces (classes_part2.py)
